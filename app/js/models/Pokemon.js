@@ -114,9 +114,13 @@ var typelist = new Array("Normal","Fire","Water","Electric","Grass","Ice","Fight
             for(i=0;i<typelist.length;i++) {
                 //Normal
                 if(types.length==1) {
-                    stat = parseInt(stat1[i]);
+                    stat = Number(stat1[i]);
                 } else {
-                    stat = stat1[i] * stat2[i];
+                    if (x == "weakness") {
+                        stat = stat1[i] * stat2[i];
+                    } else {
+                        stat = Math.max(Number(stat1[i]), Number(stat2[i]));
+                    }
                 }
                 switch(stat) {
                     case 1:
