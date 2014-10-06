@@ -155,11 +155,11 @@ var typelist = new Array("Normal","Fire","Water","Electric","Grass","Ice","Fight
                 }})
             } else {
                 this.set({strength: {
-                    x4weak : x4weak,
-                    x2weak : x2weak,
+                    x4weak : x4strong
+                    x2weak : x2strong,
                     normal : normal,
-                    x2strong : x2strong,
-                    x4strong : x4strong,
+                    x2strong : x2weak,
+                    x4strong : x4weak,
                     nodmg : nodmg
                 }})
             }
