@@ -24,24 +24,21 @@
 		</tr>
 		<tr>
 			<td>Power </td>
-			<td><% if (power !== 0) { print(power); } else { print('---'); } %> </td>
+			<td><% if (power != 0) { print(power); } else { print('---'); } %> </td>
 		</tr>
 		<tr>
 			<td>Accuracy </td>
-			<td><%=accuracy%></td>
+			<td><% if (accuracy == 0 || accuracy == -1) { print ('---'); } else { print(accuracy); } %></td>
 		</tr>
 		<tr>
-			<td>PP (Maximum)</td>
+			<td>PP (Maximum) </td>
 			<td><%=pp%> (<%=(pp*8)/5%>)</td>
 		</tr>
 		<tr>
-			<td>TM </td>
-			<td><%=tm%> </td>
+			<td>TM/HM </td>
+			<td><%if (tm == 0) { print('None'); } else { print(tm); } %> </td>
 		</tr>
-		<tr>
-			<td>Probability </td>
-			<td><%=probability%> </td>
-		</tr>
+		<% if (probability != 0) { print('<tr><td>Probability </td><td>' + probability + ' </td></tr>'); } %>
 		<tr>
 			<td>Description </td>
 			<td><%=description%> </td>
