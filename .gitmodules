@@ -1,0 +1,3 @@
+[submodule "app/rawdata"]
+	path = app/rawdata
+	url = https://github.com/StAlRuth/Gen6

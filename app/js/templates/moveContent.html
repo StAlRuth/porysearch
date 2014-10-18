@@ -24,15 +24,15 @@
 		</tr>
 		<tr>
 			<td>Power </td>
-			<td><%=power%> </td>
+			<td><% if (power !== 0) { print(power); } else { print('---'); } %> </td>
 		</tr>
 		<tr>
 			<td>Accuracy </td>
-			<td><%=accuracy%> </td>
+			<td><%=accuracy%></td>
 		</tr>
 		<tr>
-			<td>PP </td>
-			<td><%=pp%> </td>
+			<td>PP (Maximum)</td>
+			<td><%=pp%> (<%=(pp*8)/5%>)</td>
 		</tr>
 		<tr>
 			<td>TM </td>
@@ -50,7 +50,7 @@
 	</table>
 </div>
 <div class="large-6 columns">
-	<h2>Pokemons</h2>
+	<h2>Learned By:</h2>
 	<table>
 	<thead>
 	<tr>
