@@ -15,7 +15,7 @@ echo "NOTE: This CAN be set to \"/\", but don't be surprised when IE has its pro
 echo -n "> "; read ROOT
 
 echo "Enter the build destination."
-echo "NOTE: This path should be either absolute or relative to \"$PWD/app/build/\"."
+echo "NOTE: This path should be absolute."
 echo -n "> "; read DEST
 
 echo ${ROOT} >> .config
