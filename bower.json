@@ -1,0 +1,13 @@
+{
+  "name": "Pokestats.net",
+  "version": "1.2.2",
+  "private": "true",
+  "dependencies": {
+    "foundation": "zurb/bower-foundation",
+    "jquery":null,
+    "backbone-amd":null,
+    "underscore-amd":null,
+    "requirejs":null,
+    "requirejs-text":null
+  }
+}
