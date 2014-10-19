@@ -1,7 +1,7 @@
 ({
 	appDir: "../",
 	baseUrl: "js",
-	dir: "../../dist",
+	dir: "$DEST",
 	mainConfigFile: "../js/main.js",
 	name: "main",
 	optimizeCss: "standard"
