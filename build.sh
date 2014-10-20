@@ -33,4 +33,4 @@ r.js -o app/build/app.build.js
 echo "cleaning up"
 cd ${DEST}
 #TODO: Add more things to delete from ${DEST} here.
-rm -rf build build.txt js/views js/vendor bower_components js/foundation js/backbone.localStorage-min.js js/foundation.min.js js/models js/collections js/views js/router.js fbower_components sass config.rb rawdata
+rm -rf build build.txt js/views js/vendor bower_components js/foundation js/backbone.localStorage-min.js js/foundation.min.js js/models js/collections js/views js/router.js fbower_components sass config.rb rawdata js/templates raw-index.html bower.json
