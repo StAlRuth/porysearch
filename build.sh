@@ -20,6 +20,7 @@ mkdir app/data
 cp app/rawdata/ability.poke app/data/ability.json
 rhino pokemon.js > app/data/pokemon.json
 rhino move.js > app/data/move.json
+node machine.js > app/data/machine.json
 
 echo "fix options"
 cp app/raw-index.html app/index.html

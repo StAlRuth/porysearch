@@ -22,5 +22,11 @@ var x = JSON.parse(jsonstring, function(key, value) {
   return value;
 });
 
+for(var i = 0; i < x.length; i++) {
+  var wat = x[i].tm.concat(x[i].hm);
+  x[i].tm = wat;
+  delete x[i].hm;
+}
+
 var output = JSON.stringify(x);
 print(output);

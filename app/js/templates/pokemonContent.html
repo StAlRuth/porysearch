@@ -116,29 +116,107 @@
 	</div>
 	<div class="large-3 columns">
 		<h3>Learned Moves</h3>
-		<table>
-			<thead>
-				<tr>
-					<th width="40">Level</th>
-					<th>Move Name</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% for(i=0;i<learnedMoves.length;i++) { %>
-					<tr>
-					<td class="lvl">
-<%=learnedMoves[i].substring(learnedMoves[i].indexOf("(")+1,learnedMoves[i].indexOf(")"))%>
-						</td>
-					<td class="skillname"><a href="#!move/<%=learnedMoves[i].substring(0,learnedMoves[i].indexOf("(")-1)%>"><%=learnedMoves[i].substring(0,learnedMoves[i].indexOf("(")-1)%></a></td>
-						
-					</tr>
-				<%}%>
-			</tbody>
-		</table>
+    <dl class="tabs twoxtwo" data-tab>
+      <dd class="active"><a href="#movelist-lvl">Level Up</a></dd>
+      <dd><a href="#movelist-egg">Breeding</a></dd>
+      <dd><a href="#movelist-thm">TM/HM</a></dd>
+      <dd><a href="#movelist-tut">Tutor</a></dd>
+    </dl>
+    <div class="tabs-content">
+      <table class="content content-table active" id="movelist-lvl">
+		    <thead>
+			    <tr>
+				    <th width="40">Level</th>
+				    <th>Move Name</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+		    <% for(i=0;i<learnedMoves.length;i++) { %>
+				    <tr>
+				    <td class="lvl">
+   <%=learnedMoves[i].substring(learnedMoves[i].indexOf("(")+1,learnedMoves[i].indexOf(")"))%>
+					    </td>
+				    <td class="skillname"><a href="#!move/<%=learnedMoves[i].substring(0,learnedMoves[i].indexOf("(")-1)%>"><%=learnedMoves[i].substring(0,learnedMoves[i].indexOf("(")-1)%></a></td>
+				    </tr>
+			    <%}%>
+		    </tbody>
+		  </table>
+		  <% if (typeof eggMoves !== 'undefined') { %>
+      <table class="content content-table" id="movelist-egg">
+		    <thead>
+			    <tr>
+				    <th>Move Name</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+		      <% for(i=0;i<eggMoves.length;i++) { %>
+				      <tr>
+				      <td class="skillname"><a href="#!move/<%=eggMoves[i]%>"><%=eggMoves[i]%></a></td>
+				      </tr>
+			    <%}%>
+		    </tbody>
+		  </table>
+		  <% } else { %>
+      <div class="content" id="movelist-egg">
+        <p>This Pokemon gets no egg moves.</p>
+      </div>
+      <% } %>
+      <% console.log(moves); if (typeof tm !== 'undefined') { %>
+      <table class="content content-table" id="movelist-thm">
+        <thead>
+          <tr>
+            <td>TM/HM</td>
+            <td>Move Name</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i = 0; i < tm.length; i++) { %>
+            <% for(var j = 0; j < machines.length; j++) { %>
+              <% if(tm[i] === machines.models[j].attributes.name) { %>
+                <tr>
+                  <td><%=machines.models[j].attributes.name%></td>
+                  <td>
+                    <a href="#!move/<%=machines.models[j].attributes.move%>">
+                      <%=machines.models[j].attributes.move%>
+                    </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <table class="content" id="movelist-thm">
+        <tbody>
+        <tr><td>This Pokemon learns no moves from TM</td></tr>
+        </tbody>
+      </table>
+      <% } %>
+		  <% if (typeof tutor !== 'undefined') { %>
+      <table class="content content-table" id="movelist-tut">
+		    <thead>
+			    <tr>
+				    <th>Move Name</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+		    <% for(i=0;i<tutor.length;i++) { %>
+				    <tr>
+				    <td class="skillname"><a href="#!move/<%=tutor[i]%>"><%=tutor[i]%></a></td>
+				    </tr>
+			    <%}%>
+		    </tbody>
+		  </table>
+		  <% } else { %>
+		  <div class="content" id="movelist-tut">
+		    <p>This Pokemon gets no moves from Move Tutors.</p>
+		  </div>
+		  <% } %>
+    </div>
 	</div>
 	<div class="large-5 columns">
 		<h3>Abilities</h3>
-
 			<table>
 			<thead>
 			<tr>
@@ -153,7 +231,6 @@
 					</tr>
 			<%}%>
 			</table>
-
 
 			<h3 class="title">Evolution</h3>
 			<table>
@@ -263,3 +340,4 @@
 	</table>
 	</div>
 	</div>
+	<script type="application/javascript">$(document).foundation();</script>

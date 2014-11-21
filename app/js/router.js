@@ -13,15 +13,17 @@ define([
   'models/Pokemon',
   'models/Ability',
   'models/Move',
+  'models/Machine',
   'collections/Pokemons',
   'collections/Abilities',
   'collections/Moves',
   'collections/CaughtPokemons',
+  'collections/Machines',
   ],
   function($, _, Backbone, foundation, localstorage, PokemonsTableView,
   MovesTableView, AbilitiesTableView, CaughtTableView, DocumentView,
-  ContentView, Pokemon, Ability, Move, Pokemons, Abilities, Moves,
-  CaughtPokemons) {
+  ContentView, Pokemon, Ability, Move, Machine, Pokemons, Abilities, Moves,
+  CaughtPokemons, Machines) {
     // console.log(Abilities);
     var AppRouter = Backbone.Router.extend({
       routes : {
@@ -59,6 +61,10 @@ define([
         abilitiesTableView = new AbilitiesTableView({
           collection: abilities
         });
+      });
+
+      $.getJSON("data/machine.json", function(json) {
+        machines = new Machines(json);
       });
 
       $(document).ajaxStop(function() {
@@ -114,7 +120,7 @@ define([
             evt.preventDefault();
             console.log(href);
           } else {
-            if (!href.match(/#panel/) && href.slice(protocol.length) !== protocol) {
+            if (!href.match(/#panel/) && !href.match(/#movelist/) && href.slice(protocol.length) !== protocol) {
               appRouter.navigate(href, {trigger : true});
             }
           }
