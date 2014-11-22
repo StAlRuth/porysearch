@@ -120,7 +120,7 @@ define([
             evt.preventDefault();
             console.log(href);
           } else {
-            if (!href.match(/#panel/) && !href.match(/#movelist/) && href.slice(protocol.length) !== protocol) {
+            if (!href.match(/#panel/) && !href.match(/#movelist/)&& !href.match(/#learnlist/) && href.slice(protocol.length) !== protocol) {
               appRouter.navigate(href, {trigger : true});
             }
           }
