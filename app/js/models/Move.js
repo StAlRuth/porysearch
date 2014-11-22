@@ -1,6 +1,7 @@
 define([
   'backbone',
-  'localstorage'],
+  'localstorage'
+  ],
   function(Backbone) {
     var Move = Backbone.Model.extend({
       defaults: {},

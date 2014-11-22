@@ -1,6 +1,7 @@
 define(['backbone',
   'jquery',
-  'text!templates/pokemonRow.html'],
+  'text!templates/pokemonRow.html'
+  ],
   function(Backbone, $, pokemonRow) {
   CaughtRowView = Backbone.View.extend({
     className: "caught-row caught",

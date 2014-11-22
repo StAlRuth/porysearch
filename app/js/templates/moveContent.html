@@ -1,230 +1,209 @@
-<h1>move:<%=name%></h1>
+<h1><%=name%></h1>
 
 <div class="large-6 columns">
-	<h2>Info</h2>
-	<table id="movestattable">
-		<thead>
-		<tr>
-		<th>Stat</th>
-		<th>Value</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Type </td>
-			<td>
-				<div class="typewrap single">
-					<a href="#!q/type:<%= type.toLowerCase() %>" class="type <%= type.toLowerCase() %>"><%= type.toLowerCase() %> </a>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>Category </td>
-			<td><%=category%> </td>
-		</tr>
-		<tr>
-			<td>Power </td>
-			<td><% if (power != 0) { print(power); } else { print('---'); } %> </td>
-		</tr>
-		<tr>
-			<td>Accuracy </td>
-			<td><% if (accuracy == 0 || accuracy == -1) { print ('---'); } else { print(accuracy); } %></td>
-		</tr>
-		<tr>
-			<td>PP (Maximum) </td>
-			<td><%=pp%> (<%=(pp*8)/5%>)</td>
-		</tr>
-		<tr>
-			<td>TM/HM </td>
-			<td><%if (tm == 0) { print('None'); } else { print(tm); } %> </td>
-		</tr>
-		<% if (probability != 0) { print('<tr><td>Probability </td><td>' + probability + ' </td></tr>'); } %>
-		<tr>
-			<td>Description </td>
-			<td><%=description%> </td>
-		</tr>
-		</tbody>
-	</table>
+  <h2>Info</h2>
+  <table id="movestattable">
+    <thead>
+    <tr>
+    <th>Stat</th>
+    <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type </td>
+      <td>
+        <div class="typewrap single">
+          <a href="#!q/type:<%= type.toLowerCase() %>" class="type <%= type.toLowerCase() %>"><%= type.toLowerCase() %> </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Category </td>
+      <td><%=category%> </td>
+    </tr>
+    <tr>
+      <td>Power </td>
+      <td><% if (power != 0) { print(power); } else { print('---'); } %> </td>
+    </tr>
+    <tr>
+      <td>Accuracy </td>
+      <td><% if (accuracy == 0 || accuracy == -1) { print ('---'); } else { print(accuracy); } %></td>
+    </tr>
+    <tr>
+      <td>PP (Maximum) </td>
+      <td><%=pp%> (<%=(pp*8)/5%>)</td>
+    </tr>
+    <tr>
+      <td>TM/HM </td>
+      <td><%if (tm == 0) { print('None'); } else { print(tm); } %> </td>
+    </tr>
+    <% if (probability != 0) { print('<tr><td>Probability </td><td>' + probability + ' </td></tr>'); } %>
+    <tr>
+      <td>Description </td>
+      <td><%=description%> </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <div class="large-6 columns">
-	<h2>Learned By:</h2>
-	<dl class="tabs onexfour" data-tab>
+  <h2>Learned By:</h2>
+  <dl class="tabs onexfour" data-tab>
     <dd class="active"><a href="#learnlist-lvl">Level Up</a></dd>
     <dd><a href="#learnlist-egg">Breeding</a></dd>
     <dd><a href="#learnlist-thm">TM/HM</a></dd>
     <dd><a href="#learnlist-tut">Tutor</a></dd>
   </dl>
   <div class="tabs-content">
-	  <table class="content content-table active" id="learnlist-lvl">
-	  <thead>
-	  <tr>
-		  <th>Level </th>
-		  <th>Name</th>
-		  <th>Type</th>
-	  </tr>
-	  <% console.log(pokemons) 
-	  for(i=0;i<pokemons.models.length;i++) {
-		  pokemon = pokemons.models[i].attributes;
-		  for(m=0;m<pokemon.learnedMoves.length;m++) {
-			  cmove = pokemon.learnedMoves[m];
-			  clvl = cmove.substr(cmove.indexOf("(")+1);
-			  clvl = clvl.substr(0,clvl.indexOf(")"));
-			  cmove = cmove.substr(0,cmove.indexOf("(")-1);
-			  if(name.toLowerCase() == cmove.toLowerCase()) {
+    <table class="content content-table active" id="learnlist-lvl">
+    <thead>
+    <tr>
+      <th>Level </th>
+      <th>Name</th>
+      <th>Type</th>
+    </tr>
+    <%
+    for(i=0;i<pokemons.models.length;i++) {
+      pokemon = pokemons.models[i].attributes;
+      for(m=0;m<pokemon.learnedMoves.length;m++) {
+        cmove = pokemon.learnedMoves[m];
+        clvl = cmove.substr(cmove.indexOf("(")+1);
+        clvl = clvl.substr(0,clvl.indexOf(")"));
+        cmove = cmove.substr(0,cmove.indexOf("(")-1);
+        if(name.toLowerCase() == cmove.toLowerCase()) {
+    %>
+    <tr>
 
+    <td>
+    <%=clvl%>
+    </td>
+    <td class="name">
+    <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
+    </td>
+    <td class="typetd">
 
-				  %>
-	  <tr>
+    <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
+    <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
 
-	  <td>
-	  <%=clvl%>
-	  </td>
-	  <td class="name">
-	  <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
-	  </td>
-	  <td class="typetd">
+    <% if (pokemon.types.length > 1) { %>
+    <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
+    </div>
+    <% } %>
+    </td>
+    </tr>
+          <%
+        }
+      }
+    }
+    %>
+    </table>
+    <table class="content content-table" id="learnlist-egg">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+    </tr>
+    <%
+    for(i=0;i<pokemons.models.length;i++) {
+      pokemon = pokemons.models[i].attributes;
+      if(pokemon.eggMoves === undefined) {
+        continue;
+      }
+      for(m=0;m<pokemon.eggMoves.length;m++) {
+        cmove = pokemon.eggMoves[m];
+        if(name.toLowerCase() == cmove.toLowerCase()) {
+    %>
+    <tr>
 
-	  <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
-	  <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
+    <td class="name">
+    <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
+    </td>
+    <td class="typetd">
+    <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
+    <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
 
-	  <% if (pokemon.types.length > 1) { %>
-	  <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
-	  </div>
-	  <% } %>
-	  </td>
+    <% if (pokemon.types.length > 1) { %>
+    <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
+    </div>
+    <% } %>
+    </td>
+    </tr>
+          <%
+        }
+      }
+    }
+    %>
+    </table>
+    <table class="content content-table" id="learnlist-thm">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+    </tr>
+    <%
+    for(i=0;i<pokemons.models.length;i++) {
+      pokemon = pokemons.models[i].attributes;
+      for(m=0;m<pokemon.tm.length;m++) {
+        cmove = pokemon.tm[m];
+        if(tm.toLowerCase() == cmove.toLowerCase()) {
+    %>
+    <tr>
 
-	  </tr>
+    <td class="name">
+    <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
+    </td>
+    <td class="typetd">
 
-				  <%
-			  }
+    <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
+    <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
 
-		  }
-	  }
-	  %>
-	  </table>
-	  <table class="content content-table" id="learnlist-egg">
-	  <thead>
-	  <tr>
-		  <th>Name</th>
-		  <th>Type</th>
-	  </tr>
-	  <% console.log(pokemons) 
-	  for(i=0;i<pokemons.models.length;i++) {
-		  pokemon = pokemons.models[i].attributes;
-		  if(pokemon.eggMoves === undefined) {
-		    continue;
-		  }
-		  console.log(pokemon.eggMoves);
-		  for(m=0;m<pokemon.eggMoves.length;m++) {
-			  cmove = pokemon.eggMoves[m];
-			  if(name.toLowerCase() == cmove.toLowerCase()) {
+    <% if (pokemon.types.length > 1) { %>
+    <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
+    </div>
+    <% } %>
+    </td>
+    </tr>
+          <%
+        }
+      }
+    }
+    %>
+    </table>
+    <table class="content content-table" id="learnlist-tut">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+    </tr>
+    <%
+    for(i=0;i<pokemons.models.length;i++) {
+      pokemon = pokemons.models[i].attributes;
+      for(m=0;m<pokemon.tutor.length;m++) {
+        cmove = pokemon.tutor[m];
+        if(name.toLowerCase() == cmove.toLowerCase()) {
+    %>
+    <tr>
 
+    <td class="name">
+    <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
+    </td>
+    <td class="typetd">
 
-				  %>
-	  <tr>
+    <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
+    <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
 
-	  <td class="name">
-	  <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
-	  </td>
-	  <td class="typetd">
-	  <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
-	  <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
-
-	  <% if (pokemon.types.length > 1) { %>
-	  <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
-	  </div>
-	  <% } %>
-	  </td>
-
-	  </tr>
-
-				  <%
-			  }
-
-		  }
-	  }
-	  %>
-	  </table>
-	  <table class="content content-table" id="learnlist-thm">
-	  <thead>
-	  <tr>
-		  <th>Name</th>
-		  <th>Type</th>
-	  </tr>
-	  <% console.log(pokemons) 
-	  for(i=0;i<pokemons.models.length;i++) {
-		  pokemon = pokemons.models[i].attributes;
-		  for(m=0;m<pokemon.tm.length;m++) {
-			  cmove = pokemon.tm[m];
-			  if(tm.toLowerCase() == cmove.toLowerCase()) {
-
-
-				  %>
-	  <tr>
-
-	  <td class="name">
-	  <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
-	  </td>
-	  <td class="typetd">
-
-	  <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
-	  <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
-
-	  <% if (pokemon.types.length > 1) { %>
-	  <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
-	  </div>
-	  <% } %>
-	  </td>
-
-	  </tr>
-
-				  <%
-			  }
-
-		  }
-	  }
-	  %>
-	  </table>
-	  <table class="content content-table" id="learnlist-tut">
-	  <thead>
-	  <tr>
-		  <th>Name</th>
-		  <th>Type</th>
-	  </tr>
-	  <% console.log(pokemons) 
-	  for(i=0;i<pokemons.models.length;i++) {
-		  pokemon = pokemons.models[i].attributes;
-		  for(m=0;m<pokemon.tutor.length;m++) {
-			  cmove = pokemon.tutor[m];
-			  if(name.toLowerCase() == cmove.toLowerCase()) {
-
-
-				  %>
-	  <tr>
-
-	  <td class="name">
-	  <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
-	  </td>
-	  <td class="typetd">
-
-	  <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
-	  <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
-
-	  <% if (pokemon.types.length > 1) { %>
-	  <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
-	  </div>
-	  <% } %>
-	  </td>
-
-	  </tr>
-
-				  <%
-			  }
-
-		  }
-	  }
-	  %>
-	  </table>
-	</div>
+    <% if (pokemon.types.length > 1) { %>
+    <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
+    </div>
+    <% } %>
+    </td>
+    </tr>
+          <%
+        }
+      }
+    }
+    %>
+    </table>
+  </div>
 </div>
 <script>$(document).foundation()</script>

@@ -1,7 +1,8 @@
 define([
   'backbone',
   'jquery',
-  'text!templates/abilityRow.html'],
+  'text!templates/abilityRow.html'
+  ],
   function(Backbone, $, abilityRow) {
   AbilityRowView = Backbone.View.extend({
     className:"ability-row",

@@ -1,5 +1,4 @@
-define(
-  ['backbone',
+define(['backbone',
   'jquery',
   'views/CaughtRowView'
   ],
