@@ -20,6 +20,7 @@ define([
       } else {
         caughtPokemons.removePokemon(this.model);
         this.$el.removeClass("caught");
+        document.getElementById("caughtPokemon-" + this.model.attributes.identifier).remove();
       }
       contentView = new ContentView;
       contentView.updateCounters();
