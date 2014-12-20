@@ -3,7 +3,6 @@ define(['backbone',
   'views/CaughtRowView'
   ],
   function(Backbone,$,CaughtRowView) {
-    caughtRowView = new CaughtRowView;
     CaughtTableView = Backbone.View.extend({
       el: $(".caught-table"),
       renderView: function(model) {

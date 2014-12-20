@@ -6,13 +6,6 @@ define(['backbone',
   CaughtRowView = Backbone.View.extend({
     className: "caught-row caught",
     tagName: "tr",
-    id: function() {
-      if(typeof model !== 'undefined') {
-        return "caughtPokemon-" + model.attributes.identifier;
-      } else {
-        return undefined;
-      }
-    },
     events: {
       "click .catch":"catchPokemon"
     },
@@ -31,6 +24,7 @@ define(['backbone',
     render: function(){
       this.$el.attr("data-model",JSON.stringify(this.model.toJSON()))
           .attr("data-name",this.model.attributes.name)
+          .attr("id",'caughtPokemon-' + this.model.attributes.identifier.toLowerCase())
           .append(this.template(_.extend(this.model.toJSON()
           )));
     },
