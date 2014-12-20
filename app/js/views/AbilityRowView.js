@@ -9,7 +9,6 @@ define([
     tagName: "tr",
     template: _.template(abilityRow),
     render: function() {
-      // console.log(this.model);
       this.$el.attr("data-model", JSON.stringify(this.model.toJSON()))
           .append(this.template(_.extend(
             this.model.toJSON()

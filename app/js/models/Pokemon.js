@@ -177,9 +177,7 @@ define([
         this.calculateStat("weakness");
         this.calculateStat("strength");
       },
-      setCaught: function(model) {
-        console.log(model);  
-      },
+      setCaught: function(model) {},
       initialize: function() {
         this.setstats();
         //fix for dash in variable

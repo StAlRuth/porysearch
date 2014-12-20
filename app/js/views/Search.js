@@ -114,7 +114,6 @@ define([
           var type = $(this).find(".typewrap").find(".type").text();
           // var learnedMoves = 0;
           movesArray = [];
-          // console.log(moves,name);
           if (!reg.test(name) && number.toString().indexOf(value) != 0 && 
               parseInt(number)!=parseInt(value)) {
             $(this).hide();

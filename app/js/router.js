@@ -24,7 +24,6 @@ define([
   MovesTableView, AbilitiesTableView, CaughtTableView, DocumentView,
   ContentView, Pokemon, Ability, Move, Machine, Pokemons, Abilities, Moves,
   CaughtPokemons, Machines) {
-    // console.log(Abilities);
     var AppRouter = Backbone.Router.extend({
       routes : {
         "!pokemon/:name":"getPokemon",
@@ -102,7 +101,6 @@ define([
 
         Backbone.history.start();
         $(".back").on('click',function() {
-          console.log('tete')
           appRouter.navigate("", {trigger : true});
           $(".contentWrap").css({
             right:"-100%"
@@ -118,7 +116,6 @@ define([
           }
           if(href =="#") {
             evt.preventDefault();
-            console.log(href);
           } else {
             if (!href.match(/#panel/) && !href.match(/#movelist/)&& !href.match(/#learnlist/) && href.slice(protocol.length) !== protocol) {
               appRouter.navigate(href, {trigger : true});

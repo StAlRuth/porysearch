@@ -31,16 +31,13 @@ define([
       this.$el.attr("data-model",JSON.stringify(model.toJSON()))
           .html(template(_.extend(model.toJSON())));
       if($(window).width() < 1000) {
-        console.log('s');
         $(".contentWrap").css({
           right: "0%"
         });
       }
     },
     addToCaught: function(evt) {
-      // console.log("we");
       pokemon = currentModel;
-      console.log(pokemon);
       caughtPokemons.addPokemon(pokemon);
     },
     showMove: function(move) {
@@ -49,7 +46,6 @@ define([
       attr = model.attributes;
       this.$el.html(template(_.extend(model.toJSON())));
       if($(window).width() < 1000) {
-        console.log('s');
         $(".contentWrap").css({
           right: "0%"
         });
