@@ -17,7 +17,7 @@ define([
         if(!isDupe) {
           this.create(model.toJSON());
           caughtTableView = new CaughtTableView({
-            model: model
+            collection:this
           })
         }
       },
