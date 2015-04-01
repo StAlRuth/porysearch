@@ -31,7 +31,7 @@ define([
         ":page":"getPage",
         "":"getPage",
         "!move/:move":"getMove",
-        "*actions":"defaultRoute"
+        //"*actions":"defaultRoute"
       }
     })
     var initialize = function() {
@@ -99,7 +99,7 @@ define([
           contentView.showability({model:abilities.where({name:ability})})
         })
 
-        Backbone.history.start();
+        Backbone.history.start({pushState: true});
         $(".back").on('click',function() {
           appRouter.navigate("", {trigger : true});
           $(".contentWrap").css({
