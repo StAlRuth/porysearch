@@ -99,7 +99,7 @@ define([
           contentView.showability({model:abilities.where({name:ability})})
         })
 
-        Backbone.history.start({pushState: true});
+        Backbone.history.start();
         $(".back").on('click',function() {
           appRouter.navigate("", {trigger : true});
           $(".contentWrap").css({
