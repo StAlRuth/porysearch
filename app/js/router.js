@@ -31,7 +31,7 @@ define([
         ":page":"getPage",
         "":"getPage",
         "!move/:move":"getMove",
-        //"*actions":"defaultRoute"
+        "*actions":"defaultRoute"
       }
     })
     var initialize = function() {
