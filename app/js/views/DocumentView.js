@@ -7,8 +7,8 @@ define([
       el:$(document),
       resizeElements: function() {
         if($(window).width()>640) {
-          $(".main-content").height($(window).height()
-            - $("header").outerHeight());
+          $(".main-content").height($(window).height() -
+          $("header").outerHeight());
         } else {
           $(".main-content").height($(window).height() - 
             $("header").outerHeight() - $(".back").outerHeight());
