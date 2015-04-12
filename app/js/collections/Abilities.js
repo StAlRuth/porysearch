@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// collections/Abilities.js
+//
+// Defines the list of Abilities
+////////////////////////////////////////
+
 define([
   'underscore',
   'backbone',
@@ -6,7 +12,7 @@ define([
   function(_, Backbone, Ability) {
     Abilities = Backbone.Collection.extend({
       model: Ability,
-    })
+    });
    return Abilities;
   }
 );

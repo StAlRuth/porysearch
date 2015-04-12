@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// collections/Pokemons.js
+//
+// Defines the list of Pokemon
+////////////////////////////////////////
+
 define([
   'underscore',
   'backbone',
@@ -7,7 +13,7 @@ define([
   function(_, Backbone, localstorage, Pokemon) {
     Pokemons = Backbone.Collection.extend({
       model: Pokemon,
-    })
-    return Pokemons
+    });
+    return Pokemons;
   }
 );

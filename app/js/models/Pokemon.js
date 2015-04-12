@@ -1,3 +1,10 @@
+////////////////////////////////////////
+// models/Pokemon.js
+//
+// Describes a Pokemon and defines
+// some helper methods
+////////////////////////////////////////
+
 define([
   'underscore',
   'backbone'
@@ -7,13 +14,14 @@ define([
     Pokemon = Backbone.Model.extend({
       defaults: {
         evo :'',
-        'pre_evo':'',
+        pre_evo:'',
         learnedMoves: '',
         abilities: '',
         caught: '0'
       },
       getStat:function(type,stat) {
         switch(type) {
+          // TODO: define as arrays directly
           case "Normal": 
             w = "1,1,1,1,1,1,2,1,1,1,1,1,1,0,1,1,1,1";
             e = "1,1,1,1,1,1,1,1,1,1,1,1,.5,0,1,1,.5,1";
@@ -113,7 +121,7 @@ define([
         stat1 = model.getStat(types[0],x);
         //if two.
         if(types.length==2) {
-          stat2 =  model.getStat(types[1],x)
+          stat2 =  model.getStat(types[1],x);
         }
         for(i=0;i<typelist.length;i++) {
           //Normal
@@ -136,10 +144,10 @@ define([
             case 4:
               x4weak.push(typelist[i]);
               break;
-            case .5:
+            case 0.5:
               x2strong.push(typelist[i]);
               break;
-            case .25:
+            case 0.25:
               x4strong.push(typelist[i]);
               break;
             case 0:
@@ -156,7 +164,7 @@ define([
             x2strong : x2strong,
             x4strong : x4strong,
             nodmg : nodmg
-          }})
+          }});
         } else {
           this.set({strength: {
             x4weak : x4strong,
@@ -165,14 +173,14 @@ define([
             x2strong : x2weak,
             x4strong : x4weak,
             nodmg : nodmg
-          }})
+          }});
         }
       },
       setstats: function() {
         if(typeof this.attributes["pre-evo"] != "undefined") {
           this.set({
             pre_evo : this.attributes["pre-evo"]
-          })
+          });
         }
         this.calculateStat("weakness");
         this.calculateStat("strength");
@@ -182,7 +190,7 @@ define([
         this.setstats();
         //fix for dash in variable
       }
-    })
+    });
     return Pokemon;
   }
 );

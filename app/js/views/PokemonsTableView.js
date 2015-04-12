@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// views/PokemonsTableView.js
+//
+// Renders the table of pokemon
+////////////////////////////////////////
+
 define([
   'backbone',
   'jquery',
@@ -33,14 +39,14 @@ define([
           if($(this).data("model").name==model.attributes.name) {
             $(this).removeClass("caught");
           }
-        })
+        });
       },
       initialize: function () {
         var thisView = this;
         if(typeof this.collection != "undefined") {
           search = new Search({
             model:pokemons
-          })
+          });
           _.each(this.collection.models, function (pokemon) {
             // Call the renderPostView method
             thisView.renderPokemonRowView(pokemon);

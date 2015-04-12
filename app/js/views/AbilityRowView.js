@@ -1,3 +1,10 @@
+////////////////////////////////////////
+// views/AbilityRowView.js
+//
+// Displays an individual ability in a
+// table row.
+////////////////////////////////////////
+
 define([
   'backbone',
   'jquery',
@@ -14,5 +21,5 @@ define([
             this.model.toJSON()
           )));
     }
-  })
+  });
 });

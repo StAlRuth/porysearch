@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// views/MovesTableView.js
+//
+// Renders the table that contains all moves.
+////////////////////////////////////////
+
 define([
   'backbone',
   'jquery',
@@ -12,11 +18,13 @@ define([
       renderMoveView: function(move) {
         var movesRowView = new MovesRowView({
           model:move
-        })
+        });
         this.$el.children("tbody").append(movesRowView.el);
         movesRowView.render();
       },
       initialize: function() {
+        // TODO: this var even necessary?
+        // NOTE: why is it global
         thisView = this;
         _.each(this.collection.models, function (move) {
           // Call the renderPostView method

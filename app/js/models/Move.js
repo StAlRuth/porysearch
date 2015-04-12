@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// models/Move.js
+//
+// Describes a move
+////////////////////////////////////////
+
 define([
   'backbone',
   'localstorage'
@@ -6,7 +12,7 @@ define([
     var Move = Backbone.Model.extend({
       defaults: {},
       initialize: function() {}
-    })
+    });
     return Move;
   }
 );

@@ -1,12 +1,19 @@
+////////////////////////////////////////
+// app.js
+//
+// Creates an object that initialises
+// the router.
+//
+////////////////////////////////////////
+
 define([
   'jquery', 
   'underscore', 
   'backbone',
-  'router', // Request router.js
+  'router',
   ],
-  function($, _, Backbone, Router){
-    var initialize = function(){
-      // Pass in our Router module and call it's initialize function
+  function($, _, Backbone, Router) {
+    var initialize = function() {
       Router.initialize();
     };
     return { 

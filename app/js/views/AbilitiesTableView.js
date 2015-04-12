@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// views/AbilitiesTableView.js
+//
+// Displays all abilities in a table.
+////////////////////////////////////////
+
 define([
   'backbone',
   'jquery',
@@ -12,7 +18,7 @@ define([
     renderAbilityView: function(ability) {
       abilityRowView = new AbilityRowView({
         model:ability
-      })
+      });
       this.$el.children("tbody").append(abilityRowView.el);
       abilityRowView.render();
     },
@@ -23,6 +29,6 @@ define([
         thisView.renderAbilityView(move);
       });
     }
-  })
+  });
   return AbilitiesTableView;
 });

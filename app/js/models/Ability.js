@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// models/Ability.js
+//
+// Describes an ability
+////////////////////////////////////////
+
 define([
   'backbone',
   'localstorage'
@@ -6,7 +12,7 @@ define([
     var Ability = Backbone.Model.extend({
       defaults: {},
       initialize: function() {}
-    })
+    });
     return Ability;
   }
 );

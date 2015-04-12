@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// views/PokemonsRowView.js
+//
+// Renders a single pokemon in a table row.
+////////////////////////////////////////
+
 define([
   'backbone',
   'jquery',
@@ -22,12 +28,12 @@ define([
         this.$el.removeClass("caught");
         document.getElementById("caughtPokemon-" + this.model.attributes.identifier).remove();
       }
-      contentView = new ContentView;
+      contentView = new ContentView();
       contentView.updateCounters();
     },
     template: _.template(pokemonRow),
     render: function () {
-      caughtPokemons = new CaughtPokemons;
+      caughtPokemons = new CaughtPokemons();
       caughtPokemons.fetch();
       if(caughtPokemons.where({name:this.model.attributes.name}).length==1) {
         this.$el.addClass("caught");

@@ -1,3 +1,7 @@
+////////////////////////////////////////
+// REQUIREJS CONFIGURATION
+////////////////////////////////////////
+
 requirejs.config({
   baseUrl: 'js',
   paths: {
@@ -14,8 +18,18 @@ requirejs.config({
     deps: ['backbone'],
     exports: 'Backbone'
   }
-})
+});
 
-require(['app'], function(App) {
-  App.initialize();
-})
+
+////////////////////////////////////////
+// main.js
+//
+// Fires up the application.
+////////////////////////////////////////
+require([
+  'app'
+  ],
+  function(App) {
+    App.initialize();
+  }
+);

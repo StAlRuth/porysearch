@@ -1,3 +1,12 @@
+////////////////////////////////////////
+// router.js
+//
+// Interprets the URL and displays the
+// appropriate page.
+//
+// The backbone of the application.
+////////////////////////////////////////
+
 define([
   'jquery',
   'underscore',
@@ -26,16 +35,26 @@ define([
   CaughtPokemons, Machines) {
     var AppRouter = Backbone.Router.extend({
       routes : {
+        // Pokemon page
         "!pokemon/:name":"getPokemon",
+        // Search results page
+        // TODO: obsolete this
         "!q/:search":"getSearch",
+        // fallback?
         ":page":"getPage",
         "":"getPage",
+        // Move info page
         "!move/:move":"getMove",
+        // fallback?
         "*actions":"defaultRoute"
       }
-    })
+    });
+    
+    // Initialises the application
     var initialize = function() {
-      var appRouter = new AppRouter;
+      var appRouter = new AppRouter();
+      
+      // load up the JSON files
       $.getJSON("data/move.json", function(json) {
         moves = new Moves(json);
         movesTableView = new MovesTableView({
@@ -44,11 +63,11 @@ define([
       });
 
       $.getJSON("data/pokemon.json", function(json) {
-        caughtPokemons = new CaughtPokemons;
+        caughtPokemons = new CaughtPokemons();
         caughtPokemons.fetch();
         caughtTableView = new CaughtTableView({
           collection: caughtPokemons
-        })
+        });
         pokemons = new Pokemons(json);
         pokemonsTableView = new PokemonsTableView({
           collection: pokemons
@@ -62,17 +81,23 @@ define([
         });
       });
 
+      // TM/HM data
       $.getJSON("data/machine.json", function(json) {
         machines = new Machines(json);
       });
 
+      // Once we've loaded all of the data
       $(document).ajaxStop(function() {
+        // Hide the loading animation
         $("#loading").hide();
-        new DocumentView;
-        new Search;
+        // Create the various components of the page
+        new DocumentView();
+        new Search();
+        // activate the search filters if we followed a '!q/*' link
         search.filters();
-        contentView = new ContentView;
+        contentView = new ContentView();
         contentView.updateCounters();
+        // AppRouter events!
         appRouter.on('route:getPokemon', function(pokemon) {
           // replace underscores with
           pokemon = pokemon.replace(/_/gi," ");
@@ -81,32 +106,37 @@ define([
         
         appRouter.on('route:getSearch', function(search) {
           $("#search").val(search);
-          var search = new Search;
+          search = new Search();
           search.filters();
-        })
+        });
 
         appRouter.on('route:getMove', function(move) {
           move = move.replace(/_/gi,"");
-          contentView.showMove({model:moves.where({name:move})})
-        })
+          contentView.showMove({model:moves.where({name:move})});
+        });
+        
+        // wat is this i dont even
         appRouter.on('route:getPage', function(page) {
           page = (typeof page == "undefined") ? "" : page;
           contentView.showPage(page);
-        })
+        });
 
         appRouter.on('route:getAbility', function(move) {
           ability = ability.replace(/_/gi,"");
-          contentView.showability({model:abilities.where({name:ability})})
-        })
+          contentView.showability({model:abilities.where({name:ability})});
+        });
 
         Backbone.history.start();
+        
+        // onClick for the search button that displays in mobile mode
         $(".back").on('click',function() {
           appRouter.navigate("", {trigger : true});
           $(".contentWrap").css({
             right:"-100%"
-          })
-        })
+          });
+        });
 
+        // onClick for intra-app links
         $(this).on('click', 'a:not([data-bypass])', function (evt) {
           var href = $(this).attr('href');
           var protocol = this.protocol + '//';
@@ -121,17 +151,19 @@ define([
               appRouter.navigate(href, {trigger : true});
             }
           }
-        })
+        });
+        
+        // recreate the view on resize to account for the new screen size.
         $(window).on('resize',function() {
-          new DocumentView
-        })
+          new DocumentView();
+        });
       }).foundation().ready(function() {
+        // TODO: set to true at some point
         window.prerenderReady = false;
       });
-    }
-
+    };
       return { 
       initialize: initialize
     };
   }
-)
+);

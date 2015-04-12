@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// views/CaughtTableView.js
+//
+// Renders all caught pokemon in a table.
+////////////////////////////////////////
+
 define(['backbone',
   'jquery',
   'views/CaughtRowView'

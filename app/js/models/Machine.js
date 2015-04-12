@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// models/Machine.js
+//
+// Describes a TM/HM
+////////////////////////////////////////
+
 define([
   'backbone',
   'localstorage'
@@ -6,7 +12,7 @@ define([
     var Machine = Backbone.Model.extend({
       defaults: {},
       initialize: function() {}
-    })
+    });
     return Machine;
   }
 );

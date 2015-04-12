@@ -1,3 +1,12 @@
+////////////////////////////////////////
+// views/Search.js
+//
+// The search box & its functionality.
+// TODO: Deprecate search URLs or at
+//       least make them full-screen
+//       affairs.
+////////////////////////////////////////
+
 define([
   'backbone',
   'jquery'
@@ -11,8 +20,8 @@ define([
       },
       clear: function() {
         $("#search").val("");
-        history.pushState("", document.title, window.location.pathname
-            + window.location.search);
+        history.pushState("", document.title, window.location.pathname +
+          window.location.search);
         this.filters();
       },
       filters: function() {
@@ -28,25 +37,26 @@ define([
         caughtCount = 0;
         //results
         counters = {};
+        // TODO: fix
         if(value.indexOf("type:")>=0) {
           typevalue = value.substring(value.indexOf("type:")+5);
           reg = new RegExp(typevalue,"i");
           $pokemonrow.each(function(i) {
-          model = $(this).data("model");
-          match = 0;
-          types = model.types;
-          for(i=0;i<types.length;i++) {
-            if(types[i].toLowerCase() == typevalue.toLowerCase()) {
-              match++
-            }     
-          };
-          if(match>0) {
-            $(this).show();
-            pokemonCount++
-          } else {
-            $(this).hide();
-          }
-        });
+            model = $(this).data("model");
+            match = 0;
+            types = model.types;
+            for(i=0;i<types.length;i++) {
+              if(types[i].toLowerCase() == typevalue.toLowerCase()) {
+                match++;
+              }     
+            }
+            if(match>0) {
+              $(this).show();
+              pokemonCount++;
+            } else {
+              $(this).hide();
+            }
+          });
 
         $caughtrow.each(function(i) {
           model = $(this).data("model");
@@ -54,12 +64,12 @@ define([
           types = model.types;
           for(i=0;i<types.length;i++) {
             if(types[i].toLowerCase() == typevalue.toLowerCase()) {
-              match++
+              match++;
             }     
-          };
+          }
           if(match>0) {
           $(this).show();
-            caughtCount++
+            caughtCount++;
           } else {
             $(this).hide();
           }
@@ -85,24 +95,24 @@ define([
           var reg = new RegExp(value,"gi");
           var name = model.name;
           if(!reg.test(name)) {
-            $(this).hide()
+            $(this).hide();
           } else {
             $(this).show();
             abilityCount++;
           }
-        })
+        });
 
         $moverow.each(function(i) {
             var model = $(this).data("model");
             var reg = new RegExp(value,"gi");
             var name = model.name;
           if(!reg.test(name)) {
-            $(this).hide()
+            $(this).hide();
           } else {
             $(this).show();
             moveCount++;
           }
-        })
+        });
 
         $pokemonrow.each(function(i) {
           var count = 0;
@@ -114,7 +124,11 @@ define([
           var type = $(this).find(".typewrap").find(".type").text();
           // var learnedMoves = 0;
           movesArray = [];
-          if (!reg.test(name) && number.toString().indexOf(value) != 0 && 
+          // The cond is === not match, will match if:
+          //   the string is in the name
+          //   the string is in the pokedex number
+          //   number and value match
+          if (!reg.test(name) && number.toString().indexOf(value) !== 0 && 
               parseInt(number)!=parseInt(value)) {
             $(this).hide();
           } else {
@@ -131,7 +145,7 @@ define([
           var reg = new RegExp(value,"gi");
           var type = $(this).find(".typewrap").find(".type").text();
           movesArray = [];
-          if (!reg.test(name) &&  number.toString().indexOf(value) != 0 && 
+          if (!reg.test(name) &&  number.toString().indexOf(value) !== 0 && 
               parseInt(number)!=parseInt(value)) {
             $(this).hide();
           } else {
@@ -151,6 +165,6 @@ define([
       },
       initialize: function() {
       }
-    })
+    });
   }
 );

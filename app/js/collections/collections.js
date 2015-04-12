@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// collections/collections.js
+//
+// Defines all of the collections
+////////////////////////////////////////
+
 define([
   'backbone',
   'localstorage',
