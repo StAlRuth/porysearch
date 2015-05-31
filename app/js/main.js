@@ -1,7 +1,7 @@
 requirejs.config({
   baseUrl: 'js',
   paths: {
-    jquery: 'vendor/jquery/jquery',
+    jquery: 'vendor/jquery/dist/jquery',
     backbone: 'vendor/backbone-amd/backbone',
     underscore: 'vendor/underscore-amd/underscore',
     foundation: 'vendor/foundation/js/foundation',  
