@@ -4,45 +4,45 @@
   <h2>Info</h2>
   <table id="movestattable">
     <thead>
-    <tr>
-    <th>Stat</th>
-    <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Type </td>
-      <td>
-        <div class="typewrap single">
-          <a href="#!q/type:<%= type.toLowerCase() %>" class="type <%= type.toLowerCase() %>"><%= type.toLowerCase() %> </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Category </td>
-      <td><%=category%> </td>
-    </tr>
-    <tr>
-      <td>Power </td>
-      <td><% if (power != 0) { print(power); } else { print('---'); } %> </td>
-    </tr>
-    <tr>
-      <td>Accuracy </td>
-      <td><% if (accuracy == 0 || accuracy == -1) { print ('---'); } else { print(accuracy); } %></td>
-    </tr>
-    <tr>
-      <td>PP (Maximum) </td>
-      <td><%=pp%> (<%=(pp*8)/5%>)</td>
-    </tr>
-    <tr>
-      <td>TM/HM </td>
-      <td><%if (tm == 0) { print('None'); } else { print(tm); } %> </td>
-    </tr>
-    <% if (probability != 0) { print('<tr><td>Probability </td><td>' + probability + ' </td></tr>'); } %>
-    <tr>
-      <td>Description </td>
-      <td><%=description%> </td>
-    </tr>
+      <tr>
+        <th>Stat</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Type </td>
+        <td>
+          <div class="typewrap single">
+            <a href="#!q/type:<%= type.toLowerCase() %>" class="type <%= type.toLowerCase() %>"><%= type.toLowerCase() %> </a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Category </td>
+        <td><%=category%> </td>
+      </tr>
+      <tr>
+        <td>Power </td>
+        <td><% if (power != 0) { print(power); } else { print('---'); } %> </td>
+      </tr>
+      <tr>
+        <td>Accuracy </td>
+        <td><% if (accuracy == 0 || accuracy == -1) { print ('---'); } else { print(accuracy); } %></td>
+      </tr>
+      <tr>
+        <td>PP (Maximum) </td>
+        <td><%=pp%> (<%=(pp*8)/5%>)</td>
+      </tr>
+      <tr>
+        <td>TM/HM </td>
+        <td><%if (tm == 0) { print('None'); } else { print(tm); } %> </td>
+      </tr>
+      <% if (probability != 0) { print('<tr><td>Probability </td><td>' + probability + ' </td></tr>'); } %>
+      <tr>
+        <td>Description </td>
+        <td><%=description%> </td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -57,25 +57,36 @@
   <div class="tabs-content">
     <table class="content content-table active" id="learnlist-lvl">
     <thead>
-    <tr>
-      <th>Level </th>
-      <th>Name</th>
-      <th>Type</th>
-    </tr>
+      <tr>
+        <th>Level</th>
+        <th>Name</th>
+        <th>Type</th>
+      </tr>
+    </thead>
     <%
     for(i=0;i<pokemons.models.length;i++) {
       pokemon = pokemons.models[i].attributes;
+      levelsLearned = "";
       for(m=0;m<pokemon.learnedMoves.length;m++) {
         cmove = pokemon.learnedMoves[m];
         clvl = cmove.substr(cmove.indexOf("(")+1);
         clvl = clvl.substr(0,clvl.indexOf(")"));
         cmove = cmove.substr(0,cmove.indexOf("(")-1);
         if(name.toLowerCase() == cmove.toLowerCase()) {
+          if(levelsLearned === "") {
+            levelsLearned = clvl;
+          } else {
+            levelsLearned += ", ";
+            levelsLearned += clvl;
+          }
+        }
+      }
+      if(levelsLearned !== "") {
     %>
     <tr>
 
     <td>
-    <%=clvl%>
+    <%=levelsLearned%>
     </td>
     <td class="name">
     <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
@@ -92,17 +103,17 @@
     </td>
     </tr>
           <%
-        }
       }
     }
     %>
     </table>
     <table class="content content-table" id="learnlist-egg">
     <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+      </tr>
+    </thead>
     <%
     for(i=0;i<pokemons.models.length;i++) {
       pokemon = pokemons.models[i].attributes;
@@ -136,10 +147,11 @@
     </table>
     <table class="content content-table" id="learnlist-thm">
     <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+      </tr>
+    </thead>
     <%
     for(i=0;i<pokemons.models.length;i++) {
       pokemon = pokemons.models[i].attributes;
@@ -171,10 +183,11 @@
     </table>
     <table class="content content-table" id="learnlist-tut">
     <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+      </tr>
+    </thead>
     <%
     for(i=0;i<pokemons.models.length;i++) {
       pokemon = pokemons.models[i].attributes;
@@ -185,17 +198,15 @@
     <tr>
 
     <td class="name">
-    <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
+      <a href="#!pokemon/<%=pokemon.name%>"><%=pokemon.name%></a>
     </td>
     <td class="typetd">
-
-    <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
-    <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
-
-    <% if (pokemon.types.length > 1) { %>
-    <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
-    </div>
-    <% } %>
+      <div class="typewrap <% if (pokemon.types.length == 1) { %>single<% } %>">
+      <a href="#!q/type:<%= pokemon.types[0] %>" class="type <%= pokemon.types[0].toLowerCase() %>"><%= pokemon.types[0] %> </a>
+      <% if (pokemon.types.length > 1) { %>
+      <a href="#!q/type:<%= pokemon.types[1] %>" class="type <%= pokemon.types[1].toLowerCase() %>"><%= pokemon.types[1] %> </a>
+      <% } %>
+      </div>
     </td>
     </tr>
           <%
