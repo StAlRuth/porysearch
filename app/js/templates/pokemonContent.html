@@ -18,7 +18,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="large-4 columns">
+  <div class="medium-6 large-4 columns">
     <h3>Base Stats</h3>
     <table style="width:100%">
       <thead>
@@ -107,7 +107,7 @@
       </tr>
     </table>
   </div>
-  <div class="large-3 columns">
+  <div class="medium-6 large-3 columns">
     <h3>Learned Moves</h3>
     <dl class="tabs twoxtwo" data-tab>
       <dd class="active"><a href="#movelist-lvl">Level Up</a></dd>
@@ -134,7 +134,7 @@
           <%}%>
         </tbody>
       </table>
-      <% if (typeof eggMoves !== 'undefined') { %>
+      <% if (typeof eggMoves !== 'undefined' && eggMoves !== []) { %>
       <table class="content content-table" id="movelist-egg">
         <thead>
           <tr>
@@ -154,7 +154,7 @@
         <p>This Pokemon gets no egg moves.</p>
       </div>
       <% } %>
-      <% if (typeof tm !== 'undefined') { %>
+      <% if (typeof tm !== 'undefined'  && tm !== []) { %>
       <table class="content content-table" id="movelist-thm">
         <thead>
           <tr>
@@ -186,7 +186,7 @@
         </tbody>
       </table>
       <% } %>
-      <% if (typeof tutor !== 'undefined') { %>
+      <% if (typeof tutor !== 'undefined' && tutor !== []) { %>
       <table class="content content-table" id="movelist-tut">
         <thead>
           <tr>
@@ -208,8 +208,9 @@
       <% } %>
     </div>
   </div>
-  <div class="large-5 columns">
-    <h3>Abilities</h3>
+  <div class="medium-12 large-5 columns">
+    <div class="medium-6 large-12 columns">
+      <h3>Abilities</h3>
       <table>
       <thead>
       <tr>
@@ -224,8 +225,9 @@
           </tr>
       <%}%>
       </table>
-
-      <h3 class="title">Evolution</h3>
+    </div>
+    <div class="medium-6 large-12 columns">
+      <h3>Evolution</h3>
       <table>
       <thead>
       <tr>
@@ -244,10 +246,11 @@
         <%}%>
       <%}%>
       </table>
-</div>
+    </div>
+  </div>
 </div>
 <div class="row">
-  <div class="large-6 columns">
+  <div class="medium-6 columns">
   <h3>Defense</h3>
 
   <table class="type-matchups">
@@ -288,7 +291,7 @@
   </tbody>
   </table>
   </div>
-  <div class="large-6 columns">
+  <div class="medium-6 columns">
   <h3>Offense</h3>
   <table>
     <thead>

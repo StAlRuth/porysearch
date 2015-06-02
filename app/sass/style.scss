@@ -16,11 +16,11 @@ html,body {
 table tr.caught {
 	background:darken(#f9f9f9,5%);
 	img {
-
 		filter:grayscale(100%);
 		-webkit-filter: grayscale(100%);
 	}
 }
+
 td.catch
 	{
 		margin: 0;
@@ -39,8 +39,15 @@ td.catch
 }
 
 .contentWrap{
-
 	@media #{$small-only} {
+		@include transition(all .2s ease);
+		background: #FFFFFF;
+		position: absolute;
+		width:100%;
+		right: -100%;
+		z-index: 999;
+	}
+	@media #{$medium-only} {
 		@include transition(all .2s ease);
 		background: #FFFFFF;
 		position: absolute;
@@ -61,13 +68,18 @@ td.catch
 	@media #{$small-only} {
 		padding-left:20px;
 	}
+	@media #{$medium-only} {
+		padding-left:20px;
+	}
 	table {
 		width: 100%;
 	}
 }
 
 .leftWrap {
-	@media #{$small-only} { padding:0 } 
+	@media #{$small-up} {
+		padding:0
+	}
 	@media #{$large-up} {
 		padding-left:0;
 	}
@@ -101,7 +113,6 @@ td.catch
 		// margin: 0;
 		a {
 			font-size:10px;
-
 		}
 		.count {
 			font-size: 10px;
@@ -134,6 +145,7 @@ td.catch
 	.type {
 		width:50%;
 		float: left;
+		font-size:11px;
 	}
 }
 
@@ -141,6 +153,7 @@ h1 img {
 	height:96px;
 	width:96px;
 }
+
 .ability-table {
 	width:100%;
 }

@@ -40,7 +40,7 @@ define([
             .html(template(_.extend(model.toJSON())));
         // Corresponds with upper bound for medium screen
         // therefore this screen will not show on medium displays
-        if($(window).width() < 1000) {
+        if($(window).width() <= 1024) {
           $(".contentWrap").css({
             right: "0%"
           });
@@ -58,7 +58,7 @@ define([
         this.$el.html(template(_.extend(model.toJSON())));
         // Corresponds with upper bound for medium screen
         // therefore this screen will not show on medium displays
-        if($(window).width() < 1000) {
+        if($(window).width() <= 1024) {
           $(".contentWrap").css({
             right: "0%"
           });
