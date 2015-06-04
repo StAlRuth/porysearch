@@ -11,3 +11,5 @@
     RewriteRule (.*) index.html [L]
 </IfModule>
 
+AddType text/cache-manifest .appcache
+

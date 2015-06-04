@@ -1,0 +1,13 @@
+CACHE MANIFEST
+index.html
+favicon.ico
+css/normalize.css
+css/style.css
+data/ability.json
+data/machine.json
+data/move.json
+data/pokemon.json
+img/pokeball.png
+img/loading.gif
+js/main.js
+js/require.js

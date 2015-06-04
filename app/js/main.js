@@ -12,7 +12,8 @@ requirejs.config({
     text : 'vendor/requirejs-text/text',
     router: 'router',
     localstorage: 'backbone.localStorage-min',
-    app : 'app'
+    app : 'app',
+    event: 'event'
   },
   'localStorage': {
     deps: ['backbone'],
@@ -27,9 +28,14 @@ requirejs.config({
 // Fires up the application.
 ////////////////////////////////////////
 require([
-  'app'
+  'app',
+  'event'
   ],
-  function(App) {
+  function(App, Event) {
+    console.log("wat");
+    // Create event handlers
+    Event();
+    // Initialise the application
     App.initialize();
   }
 );

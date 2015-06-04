@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" manifest="porysearch.appcache">
 <head>
   <base href="$ROOT">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <script data-main="js/main" src="js/require.js" async></script>
   <link rel="shortcut icon" href="favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -27,6 +28,13 @@
       </section>
     </nav>
   </header>
+  <div id="appCacheModal" class="reveal-modal" data-reveal>
+    <h2>Update available</h2>
+    <p class="lead">An updated version of Porysearch has been retrieved from the server.  Refresh to start using the new version of Porysearch.</p>
+    <p>Click anywhere outside of this modal to use this version one last time.</p>
+    <p><a class="secondary button" onClick='window.location.reload();'>Refresh!</a></p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
   <div class="row mainWrap">
     <div class="small-12 large-3 columns leftWrap">
       <div class="row collapse searchWrap">
@@ -130,6 +138,5 @@
     </div>
   </div>
   <div id="loading"></div>
-  <script data-main="js/main" src="js/require.js"></script>
 </body>
 </html>
