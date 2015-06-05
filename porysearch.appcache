@@ -9,7 +9,6 @@ data/move.json
 data/pokemon.json
 img/pokeball.png
 img/loading.gif
-js/app.js
 js/main.js
 js/require.js
 #Thu Jun  4 22:07:52 AEST 2015
