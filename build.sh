@@ -10,10 +10,12 @@ DEST=$(sed '2q;d' .config)
 rm -rf ${DEST}
 rm -rf app/data
 
-echo "compile scss"
+echo "compile & process scss"
 cd app
 compass compile
-cd ..
+cd css
+postcss -u autoprefixer -o style.css style.css
+cd ../..
 
 echo "init data"
 mkdir app/data
@@ -29,8 +31,9 @@ sed -i "s/\$DEST/$(echo ${DEST} | sed 's/\//\\\//g')/g" app/build/app.build.js
 echo "compiling..."
 r.js -o app/build/app.build.js
 
-echo "cleaning up"
 cd ${DEST}
+echo "adding timestamp to cache manifest"
 echo "#$(date)" >> porysearch.appcache
 
-rm -rf build build.txt js/views js/vendor bower_components js/foundation js/backbone.localStorage-min.js js/foundation.min.js js/models js/collections js/views js/router.js fbower_components sass config.rb rawdata js/templates raw-index.html bower.json .bowerrc .sass-cache/ css/print.css css/ie.css css/screen.css js/app.js js/event.js
+echo "cleaning up"
+rm -rf bower.json build.txt config.rb raw-index.html .bowerrc build/ rawdata/ sass/ .sass-cache/ js/app.js js/backbone.localStorage-min.js js/event.js js/router.js js/collections/ js/models/ js/templates/ js/vendor/ js/views/

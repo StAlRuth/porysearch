@@ -1,0 +1,39 @@
+$loadingtext: "LOADING";
+
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #fff;
+}
+
+#loader {
+  display: block;
+  position: relative;
+  z-index: 10000;
+  top: 50vh;
+  left: 50vw;
+  width: 100vw;
+  border: 1vh solid transparent;
+  border-bottom-color: #009;
+  animation: bar 3s linear infinite;
+  &:after {
+    content: "LOADING";
+  }
+}
+
+@keyframes bar {
+  0% {
+    border-bottom-color: #009;
+  }
+  33% {
+    border-bottom-color: #900;
+  }
+  66% {
+    border-bottom-color: #090;
+  }
+}
+

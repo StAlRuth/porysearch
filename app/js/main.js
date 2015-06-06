@@ -32,7 +32,6 @@ require([
   'event'
   ],
   function(App, Event) {
-    console.log("wat");
     // Create event handlers
     Event();
     // Initialise the application
