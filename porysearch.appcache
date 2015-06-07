@@ -1,5 +1,4 @@
 CACHE MANIFEST
-index.html
 favicon.ico
 css/normalize.css
 css/style.css
@@ -8,7 +7,6 @@ data/machine.json
 data/move.json
 data/pokemon.json
 img/pokeball.png
-img/loading.gif
 js/main.js
 js/require.js
-#Thu Jun  4 22:07:52 AEST 2015
+#Sun Jun  7 15:34:52 AEST 2015
