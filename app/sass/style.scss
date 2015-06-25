@@ -45,10 +45,7 @@ td.catch {
 .main-content {
   overflow:auto;
   padding-right:20px;
-
-  @media #{$small-only}, #{$medium-only} {
-    padding-left:20px;
-  }
+  padding-left:20px;
 }
 
 .leftWrap {
@@ -125,4 +122,29 @@ table {
 
 .button.postfix {
   padding:0;
+}
+
+@media #{$medium-only} {
+  .nested {
+    &.left {
+      padding-left:0px;
+    }
+    &.right {
+      padding-right:0px;
+    }
+  }
+}
+
+@media #{$small-only} {
+  .nested {
+    padding-left:0px;
+    padding-right:0px;
+  }
+}
+
+@media #{$large-up} {
+  .nested {
+    padding-left:0px;
+    padding-right:0px;
+  }
 }
