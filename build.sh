@@ -7,8 +7,17 @@ fi
 ROOT=$(sed '1q;d' .config)
 DEST=$(sed '2q;d' .config)
 
-rm -rf ${DEST}
-rm -rf app/data
+if [ -d ${DEST} ]
+  then rm -rf ${DEST}/*
+else
+  mkdir ${DEST}
+fi
+
+if [ -d app/data ]
+  then rm -rf app/data/*
+else
+  mkdir app/data
+fi
 
 echo "compile & process scss"
 cd app
@@ -18,7 +27,6 @@ postcss -u autoprefixer -o style.css style.css
 cd ../..
 
 echo "init data"
-mkdir app/data
 cp app/rawdata/ability.poke app/data/ability.json
 node prepdata.js
 
