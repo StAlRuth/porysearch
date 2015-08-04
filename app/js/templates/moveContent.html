@@ -1,5 +1,11 @@
+<%
+learnedByLevel = false;
+learnedByEgg = false;
+learnedByTm = false;
+learnedByTutor = false;
+tabCount = 0;
+%>
 <h1><%=name%></h1>
-
 <div class="large-6 columns">
   <h2>Info</h2>
   <table id="movestattable">
@@ -47,12 +53,12 @@
   </table>
 </div>
 <div class="large-6 columns">
-  <h2>Learned By:</h2>
+  <h2 id="learnlist-title">Learned By:</h2>
   <dl class="tabs" data-tab>
-    <dd class="small-3 columns active"><a href="#learnlist-lvl">Level Up</a></dd>
-    <dd class="small-3 columns"><a href="#learnlist-egg">Breeding</a></dd>
-    <dd class="small-3 columns"><a href="#learnlist-thm">TM/HM</a></dd>
-    <dd class="small-3 columns"><a href="#learnlist-tut">Tutor</a></dd>
+    <dd class="content" id="tab-lvl"><a href="#learnlist-lvl">Level Up</a></dd>
+    <dd class="content" id="tab-egg"><a href="#learnlist-egg">Breeding</a></dd>
+    <dd class="content" id="tab-thm"><a href="#learnlist-thm">TM/HM</a></dd>
+    <dd class="content" id="tab-tut"><a href="#learnlist-tut">Tutor</a></dd>
   </dl>
   <div class="tabs-content">
     <table class="content content-table active" id="learnlist-lvl">
@@ -73,6 +79,10 @@
         clvl = clvl.substr(0,clvl.indexOf(")"));
         cmove = cmove.substr(0,cmove.indexOf("(")-1);
         if(name.toLowerCase() == cmove.toLowerCase()) {
+          if(!learnedByLevel) {
+            learnedByLevel = true;
+            tabCount++;
+          }
           if(levelsLearned === "") {
             levelsLearned = clvl;
           } else {
@@ -123,6 +133,10 @@
       for(m=0;m<pokemon.eggMoves.length;m++) {
         cmove = pokemon.eggMoves[m];
         if(name.toLowerCase() == cmove.toLowerCase()) {
+        if(!learnedByEgg) {
+          learnedByEgg = true;
+          tabCount++;
+        }
     %>
     <tr>
 
@@ -158,6 +172,10 @@
       for(m=0;m<pokemon.tm.length;m++) {
         cmove = pokemon.tm[m];
         if(tm.toLowerCase() == cmove.toLowerCase()) {
+        if(!learnedByTm) {
+          learnedByTm = true;
+          tabCount++;
+        }
     %>
     <tr>
 
@@ -194,6 +212,10 @@
       for(m=0;m<pokemon.tutor.length;m++) {
         cmove = pokemon.tutor[m];
         if(name.toLowerCase() == cmove.toLowerCase()) {
+        if(!learnedByTutor) {
+          learnedByTutor = true;
+          tabCount++;
+        }
     %>
     <tr>
 
@@ -217,4 +239,27 @@
     </table>
   </div>
 </div>
-<script>$(document).foundation()</script>
+
+
+<script>$(document).foundation();</script>
+
+<script>
+var activeTabSelected = false;
+[
+  ["tab-lvl", learnedByLevel],
+  ["tab-egg", learnedByEgg],
+  ["tab-thm", learnedByTm],
+  ["tab-tut", learnedByTutor]
+].forEach(function(arr) {
+  console.log(arr[1]);
+  if(arr[1]) {
+    $("#" + arr[0]).addClass("small-" + (12/tabCount));
+    if(!activeTabSelected) {
+      activeTabSelected = true;
+      $("#" + arr[0]).addClass("active");
+    }
+  } else {
+    $("#" + arr[0]).addClass("invisible");
+  }
+});
+</script>

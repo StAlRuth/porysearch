@@ -12,6 +12,7 @@ html,body {
 .mainWrap {
   // override foundation max width
   max-width:100%;
+  -webkit-overflow-scrolling:touch;
 }
 
 tr.caught {
@@ -23,7 +24,7 @@ tr.caught {
 }
 
 td.catch {
-  padding:0;  
+  padding:0;
 }
 
 .contentWrap {
@@ -50,7 +51,7 @@ td.catch {
 
 .leftWrap {
   @media #{$small-up} {
-    padding:0
+    padding:0;
   }
 
   .searchWrap {
@@ -147,4 +148,8 @@ table {
     padding-left:0px;
     padding-right:0px;
   }
+}
+
+.invisible {
+  display:none;
 }
